@@ -1,8 +1,23 @@
 const Tetrimino = require('../tetrimino');
 
-module.exports.get = function(tetriminoName) {
-  const data = tetriminos[tetriminoName];
-  return new Tetrimino(data);
+function rotate(data, deg) {
+  if(deg === '90') {
+    const rotatedData = [ [], [], [], [], [] ];
+    data.forEach(i => {
+      rotatedData.forEach((val, index) => val.unshift(i[index]));
+    });
+    return rotatedData;
+  }
+}
+
+module.exports.get = function(tetriminoName, degrees) {
+  let tetriminoData;
+
+  tetriminoData = degrees ?
+    rotate(tetriminos[tetriminoName], degrees.toString()) :
+    tetriminos[tetriminoName];
+
+  return new Tetrimino(tetriminoData);
 }
 
 const tetriminos = {
