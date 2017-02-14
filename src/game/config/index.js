@@ -1,5 +1,5 @@
 module.exports = {
-  board: {
+  boardConfig: {
     height: 40,
     width: 20
   }
