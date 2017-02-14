@@ -1,6 +1,6 @@
 describe('tetriminos', () => {
-  let tetriminosFactory = require('../src/game/tetriminos-factory');
-  let Tetrimino = require('../src/game/tetrimino');
+  const tetriminosFactory = require('../src/game/tetriminos-factory');
+  const Tetrimino = require('../src/game/tetrimino');
 
   const tetriminoJ = [
     [0, 0, 0, 0, 0],
@@ -59,5 +59,22 @@ describe('tetriminos', () => {
       let tetrimino = tetriminosFactory.get('J', 270);
       expect(tetrimino.isDataEqualTo(new Tetrimino(tetriminoJ270DegClockwise), true)).toBe(true)
     });
-  });  
+  });
+
+  describe('tetriminos rotation after creation', () => {
+    it('should rotate 360 degrees and verify the resultant tetrimino', () => {
+      let tetrimino = tetriminosFactory.get('J');
+      tetrimino.rotate();
+      expect(tetrimino.isDataEqualTo(new Tetrimino(tetriminoJ90DegClockwise), true)).toBe(true);
+
+      tetrimino.rotate();
+      expect(tetrimino.isDataEqualTo(new Tetrimino(tetriminoJ180DegClockwise), true)).toBe(true);
+
+      tetrimino.rotate();
+      expect(tetrimino.isDataEqualTo(new Tetrimino(tetriminoJ270DegClockwise), true)).toBe(true);
+
+      tetrimino.rotate();
+      expect(tetrimino.isDataEqualTo(new Tetrimino(tetriminoJ), true)).toBe(true)
+    })
+  })
 })
