@@ -1,23 +1,39 @@
 const Tetrimino = require('../tetrimino');
+const arrayClone = require('../../array-clone');
 
-function rotate(data, deg) {
-  if(deg === '90') {
-    const rotatedData = [ [], [], [], [], [] ];
-    data.forEach(i => {
-      rotatedData.forEach((val, index) => val.unshift(i[index]));
-    });
-    return rotatedData;
-  }
+module.exports.get = getTetrimino;
+
+function getTetrimino(tetriminoName, degrees) {
+  const data = arrayClone(tetriminos[tetriminoName]);
+  const tetriminoData = degrees ? rotate(data, degrees) : data;
+  return new Tetrimino(tetriminoData);
 }
 
-module.exports.get = function(tetriminoName, degrees) {
-  let tetriminoData;
+function rotate(data, deg) {
+  const rotations = {
+    0: data => data,
+    90: data => {
+      const rotatedData = [ [], [], [], [], [] ];
+      data.forEach(i => {
+        rotatedData.forEach((val, index) => val.unshift(i[index]));
+      });
+      return rotatedData;
+    },
+    180: data => {
+      const rotatedData = [];
+      data.forEach(i => rotatedData.unshift(i.reverse()));
+      return rotatedData;
+    },
+    270: data => {
+      const rotatedData = [ [], [], [], [], []];
+      data.forEach(i => {
+        i.reverse().forEach((val, index) => { rotatedData[index].push(val); })
+      });
+      return rotatedData;
+    }
+  }
 
-  tetriminoData = degrees ?
-    rotate(tetriminos[tetriminoName], degrees.toString()) :
-    tetriminos[tetriminoName];
-
-  return new Tetrimino(tetriminoData);
+  return rotations[deg](data);
 }
 
 const tetriminos = {
