@@ -4,7 +4,7 @@
   "description": "Tetris implementation in nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "karma start"
+    "test": "jest"
   },
   "keywords": [
     "Tetris",
@@ -17,13 +17,6 @@
   "license": "BSD-2-Clause",
   "devDependencies": {
     "babel-loader": "^5.0.0",
-    "webpack": "^1.8.4",
-    "jasmine-core": "^2.2.0",
-    "karma": "^0.13.2",
-    "karma-jasmine": "^0.3.5",
-    "jasmine": "^2.2.1",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "karma-webpack": "^1.6.0",
-    "karma-coverage": "~1.1.1"
+    "jest": "^26.0.1"
   }
 }
