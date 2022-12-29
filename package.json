@@ -16,7 +16,7 @@
   "author": "Guilherme Pendezza de Sousa",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "babel-loader": "^5.0.0",
+    "babel-loader": "^9.1.0",
     "jest": "^26.0.1"
   }
 }
